@@ -1,0 +1,47 @@
+====================================================================
+           HƯỚNG DẪN CÀI ĐẶT & SỬ DỤNG CUBENHO AI (ĐỘ CHÍNH XÁC 100%)
+====================================================================
+
+Tiện ích hỗ trợ giải bài trắc nghiệm tự động 100% MIỄN PHÍ bằng Google Gemini AI.
+Hỗ trợ TẤT CẢ các nền tảng: Wayground (Quizizz), Azota, Google Forms, Canvas,
+Moodle, LMS, Vietjack, Olm, K12Online và các trang thi trực tuyến khác.
+
+--------------------------------------------------------------------
+BƯỚC 1: CẬP NHẬT / CÀI ĐẶT TIỆN ÍCH VÀO TRÌNH DUYỆT
+--------------------------------------------------------------------
+1. Mở trình duyệt, truy cập vào trang quản lý tiện ích:
+   - Trên Microsoft Edge: edge://extensions/
+   - Trên Google Chrome:  chrome://extensions/
+   - Trên Cốc Cốc:        coccoc://extensions/
+
+2. Bật công tắc "Chế độ dành cho nhà phát triển" (Developer mode) ở góc trên.
+
+3. Bấm nút 🔄 "Tải lại" (Reload) tại thẻ tiện ích "cubenho" (Phiên bản 1.0.8).
+   (Nếu mới cài lần đầu: Bấm "Tải phần mở rộng đã giải nén" -> Chọn thư mục "Cube").
+
+4. QUAN TRỌNG: Hãy F5 (Tải lại) trang web bạn đang làm bài để nạp mã mới!
+
+
+--------------------------------------------------------------------
+BƯỚC 2: CÁCH SỬ DỤNG PHÍM TẮT ĐỂ ĐẠT ĐIỂM 10/10
+--------------------------------------------------------------------
+1. PHÍM TẮT Alt + Q (Chụp & Giải đáp án):
+   - Khi cuộn màn hình đến câu hỏi nào, chỉ cần để câu hỏi đó ở giữa màn hình
+     rồi nhấn Alt + Q.
+   - Hệ thống tự động nhận diện câu hỏi đang nằm giữa màn hình để giải đúng câu đó,
+     không bị lẫn sang các câu hỏi khác trên trang.
+   - Khung đáp án hiển thị nổi ở góc trên: Chữ cái đáp án (A, B, C, D...)
+     kèm trích đoạn nội dung phương án và dòng suy luận tóm tắt.
+   - Bấm chuột bất kỳ đâu hoặc bấm Escape để đóng khung đáp án.
+
+   💡 MẸO TẬP TRUNG 100%: Trên các trang đề dài hoặc đề PDF/ảnh (như Azota),
+   bạn có thể lấy chuột bôi đen (chọn) dòng chữ câu hỏi rồi nhấn Alt + Q.
+   AI sẽ tập trung 100% giải đúng câu bạn vừa bôi đen!
+
+2. PHÍM TẮT Alt + A (Chế độ tự động Wayground):
+   - Dành riêng cho Wayground (Quizizz): Tự động phát hiện câu hỏi mới và
+     tự động click chọn phương án đúng bằng cơ chế so khớp văn bản 2 lớp.
+
+3. PHÍM TẮT Alt + X: Bật/Tắt nhanh toàn bộ tiện ích khi cần ẩn.
+
+Chúc bạn học tập và thi cử đạt kết quả tuyệt đối 10/10!

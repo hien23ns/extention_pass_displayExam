@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>cubenho</title>
+  <link rel="stylesheet" href="popup.css">
+  <style>
+    .api-card {
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .api-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .api-title-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      color: var(--text-sub);
+    }
+    .api-free-badge {
+      font-size: 9px;
+      font-weight: 800;
+      padding: 1px 6px;
+      border-radius: var(--pill-radius);
+      background: var(--green-soft);
+      color: var(--green);
+      border: 1px solid var(--green-border);
+    }
+    .api-input-wrap {
+      display: flex;
+      align-items: center;
+      position: relative;
+      background: var(--surface2);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--btn-radius);
+      padding: 0 8px;
+      transition: var(--transition);
+    }
+    .api-input-wrap:focus-within {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 2px var(--accent-soft);
+    }
+    .api-input-wrap input {
+      width: 100%;
+      height: 36px;
+      background: transparent;
+      color: var(--text);
+      font-size: 12px;
+      padding-right: 28px;
+    }
+    .api-toggle-btn {
+      position: absolute;
+      right: 6px;
+      background: transparent;
+      color: var(--text-muted);
+      display: grid;
+      place-items: center;
+      padding: 4px;
+      border-radius: 6px;
+    }
+    .api-toggle-btn:hover {
+      color: var(--text);
+    }
+    .api-actions-row {
+      display: flex;
+      gap: 6px;
+    }
+    .api-btn {
+      flex: 1;
+      height: 32px;
+      border-radius: var(--btn-radius);
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+    .api-btn-save {
+      background: var(--accent);
+      color: #fff;
+    }
+    .api-btn-save:hover {
+      background: var(--accent2);
+      transform: translateY(-1px);
+    }
+    .api-btn-test {
+      background: var(--surface3);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .api-btn-test:hover {
+      background: var(--surface2);
+    }
+    .api-status-banner {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 10px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+    }
+    .api-status-banner.is-valid {
+      background: var(--green-soft);
+      color: var(--green);
+      border-color: var(--green-border);
+    }
+    .api-status-banner.is-invalid {
+      background: var(--red-soft);
+      color: var(--red);
+      border-color: var(--red-border);
+    }
+    .api-link-hint {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+      display: block;
+      text-decoration: none;
+    }
+    .api-link-hint a {
+      color: var(--accent2);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .api-link-hint a:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <main class="popup">
+
+    <!-- ── Header ── -->
+    <header class="header">
+      <div class="brand">
+        <div class="logo" aria-hidden="true" title="cubenho">
+          <img src="icons/icon48.png" alt="cubenho">
+        </div>
+        <div class="brand-text">
+          <div class="brand-title-row">
+            <h1>cubenho</h1>
+            <span class="badge-version">FREE AI</span>
+          </div>
+          <div class="status-indicator">
+            <span class="status-pulse-dot"></span>
+            <span id="status">Sẵn sàng</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <!-- Theme toggle -->
+        <button id="themeToggle" class="theme-btn" type="button" title="Đổi giao diện" aria-label="Chuyển sáng/tối">
+          <svg id="iconMoon" width="15" height="15" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 1 0 9.79 9.79z"/>
+          </svg>
+          <svg id="iconSun" width="15" height="15" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" hidden>
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
+
+        <!-- Power toggle switch -->
+        <button id="enabled" class="switch" type="button" role="switch" aria-checked="true"
+          title="Bật/tắt tiện ích QuizPeek" aria-label="Bật QuizPeek">
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ── Gemini API Configuration Card (100% Free) ── -->
+    <section class="card api-card">
+      <div class="api-header">
+        <div class="api-title-group">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <span>GEMINI API KEY</span>
+        </div>
+        <span class="api-free-badge">FREE FOREVER</span>
+      </div>
+
+      <div class="api-input-wrap">
+        <input id="apiKeyInput" type="password" placeholder="Dán Gemini API Key vào đây..." autocomplete="off">
+        <button id="toggleKeyVisibility" class="api-toggle-btn" type="button" title="Hiện/ẩn API Key">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="api-actions-row">
+        <button id="saveApiKey" class="api-btn api-btn-save" type="button">
+          <span>Lưu Key</span>
+        </button>
+        <button id="testApiKey" class="api-btn api-btn-test" type="button">
+          <span>Kiểm tra</span>
+        </button>
+      </div>
+
+      <div id="apiKeyStatus" class="api-status-banner">
+        <span>Đang kiểm tra trạng thái API...</span>
+      </div>
+
+      <p class="api-link-hint">
+        Chưa có key? <a id="openAiStudio" href="#">Lấy API Key miễn phí tại Google AI Studio</a>
+      </p>
+    </section>
+
+    <!-- ── Actions Hub ── -->
+    <section class="card actions-hub">
+      <!-- ── AI Mode Selector ── -->
+      <div class="answer-mode-section">
+        <div class="answer-mode-header">
+          <div class="answer-mode-title-group">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" y1="21" x2="4" y2="14"/>
+              <line x1="4" y1="10" x2="4" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="12"/>
+              <line x1="12" y1="8" x2="12" y2="3"/>
+              <line x1="20" y1="21" x2="20" y2="16"/>
+              <line x1="20" y1="12" x2="20" y2="3"/>
+              <line x1="1" y1="14" x2="7" y2="14"/>
+              <line x1="9" y1="8" x2="15" y2="8"/>
+              <line x1="17" y1="16" x2="23" y2="16"/>
+            </svg>
+            <span class="answer-mode-label">MÔ HÌNH AI</span>
+          </div>
+          <span class="answer-mode-subtext">Gemini Vision</span>
+        </div>
+
+        <div class="answer-mode-row" role="radiogroup" aria-label="Mô hình AI">
+          <label class="mode-radio" for="modeFast" title="Gemini 3.5 Flash-Lite - Tốc độ cao">
+            <input id="modeFast" name="answerMode" type="radio" value="fast">
+            <div class="mode-content">
+              <svg class="mode-svg mode-svg-fast" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+              <span class="mode-name">Nhanh</span>
+              <span class="mode-badge">Flash Lite</span>
+            </div>
+          </label>
+
+          <label class="mode-radio is-selected" for="modeAccurate" title="Gemini 3.8 Flash - Độ chính xác tuyệt đối 100%, suy luận chuyên sâu">
+            <input id="modeAccurate" name="answerMode" type="radio" value="accurate" checked>
+            <div class="mode-content">
+              <svg class="mode-svg mode-svg-accurate" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="6"/>
+                <circle cx="12" cy="12" r="2"/>
+              </svg>
+              <span class="mode-name">Chính xác</span>
+              <span class="mode-badge">3.8 Flash (100%)</span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Hero trigger: Giải đáp án -->
+      <button id="capture" class="hero-capture-btn" type="button">
+        <div class="capture-btn-content">
+          <div class="capture-icon-bubble">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 7V5a2 2 0 0 1 2-2h2"/>
+              <path d="M17 3h2a2 2 0 0 1 2 2v2"/>
+              <path d="M21 17v2a2 2 0 0 1-2 2h-2"/>
+              <path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
+              <polyline points="8 12 11 15 16 9"/>
+            </svg>
+          </div>
+          <span class="capture-main-label">Giải đáp án (100% chuẩn)</span>
+        </div>
+        <kbd class="kbd-badge">Alt + Q</kbd>
+      </button>
+
+      <!-- Feature Card: Auto Wayground -->
+      <div class="feature-card">
+        <div class="feature-card-left">
+          <div class="feature-icon-badge">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
+          <div class="feature-info">
+            <div class="feature-title-row">
+              <b>Auto Wayground</b>
+              <kbd class="kbd-mini">Alt + A</kbd>
+            </div>
+            <small>Tự nhận diện &amp; bấm đáp án</small>
+          </div>
+        </div>
+
+        <button id="autoWayground" class="switch small" type="button"
+          role="switch" aria-checked="false" aria-label="Bật Auto Wayground">
+          <span></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ── Result Viewport ── -->
+    <section class="card result-viewport">
+      <div class="result-header">
+        <div class="result-title">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <span>KẾT QUẢ ĐÁP ÁN</span>
+        </div>
+        <span id="answerHint" class="result-status-pill">Sẵn sàng</span>
+      </div>
+
+      <div class="result-display-box">
+        <div class="answer-badge-container">
+          <strong id="answer" aria-live="polite">—</strong>
+        </div>
+        <p id="answerDetail" class="result-note" style="margin-top:6px; font-weight:600; color:var(--text); display:none;"></p>
+        <p class="result-note">Gợi ý AI miễn phí · Nhấn Alt + Q để chụp và giải ngay</p>
+      </div>
+    </section>
+
+    <p id="error" class="error-banner" aria-live="polite"></p>
+
+    <!-- ── Footer ── -->
+    <footer class="footer">
+      <div class="footer-shortcuts">
+        <span><kbd>Alt + Q</kbd> Chụp ảnh</span>
+        <span><kbd>Alt + A</kbd> Tự động</span>
+        <span><kbd>Alt + X</kbd> Bật/tắt</span>
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>
